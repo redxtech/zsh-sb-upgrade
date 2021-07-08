@@ -1,0 +1,30 @@
+#!/usr/bin/env zsh
+
+sb-upgrade() {
+  # a list of the apps to upgrade
+  local apps=(
+    plex
+    jackett
+    sonarr
+    radarr
+  )
+
+  for app in $apps; do
+    echo "Upgrading $app..."
+
+    local app_file="/usr/bin/app-$app"
+    
+    # update plex to the latest version
+    if test "$app" = "plex"; then
+      "$app_file" upgrade --plex-version=latest
+    else
+      "$app_file" upgrade
+    fi
+
+    echo "Restarting $app..."
+    "$app_file" restart
+  done
+
+  echo "Finished upgrades!"
+}
+
