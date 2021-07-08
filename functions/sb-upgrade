@@ -10,7 +10,7 @@ sb-upgrade() {
   )
 
   for app in $apps; do
-    echo "Upgrading $app..."
+    echo "$fg_bold[blue]Upgrading $app...$reset_color"
 
     local app_file="/usr/bin/app-$app"
     
@@ -21,10 +21,10 @@ sb-upgrade() {
       "$app_file" upgrade
     fi
 
-    echo "Restarting $app..."
+    echo "$fg_bold[blue]Restarting $app...$reset_color"
     "$app_file" restart
   done
 
-  echo "Finished upgrades!"
+  echo "$fg_bold[green]Finished upgrades!$reset_color"
 }
 
